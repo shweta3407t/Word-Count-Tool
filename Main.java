@@ -1,6 +1,5 @@
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
@@ -9,10 +8,15 @@ public class Main {
 
         while (true) {
             System.out.print("ENTER SENTANCES : ");
+
             String text = sc.nextLine().toLowerCase();
+            boolean isValide = utils.InputValidator.isValideInput(text);
+            if (isValide) {
+                continue;
+            }
             boolean isRunning = true;
             while (isRunning) {
-                HashMap<HashSet<String>, Integer> wordCount = new HashMap<>();
+                HashMap<String, Integer> wordCount = new HashMap<>();
 
                 System.out.println("""
                         \nENTER :
@@ -39,18 +43,18 @@ public class Main {
                         service.WordCountService.character(text);
                         continue;
                     case "l":
+
                         service.WordCountService.line(text);
 
                         continue;
 
                     case "f":
-                        service.WordCountService.wordFrequency(text ,wordCount);
+                        service.WordCountService.wordFrequency(text, wordCount);
 
                         continue;
                     case "s":
                         service.WordCountService.sentence(text);
                         continue;
-
 
                     case "r":
                         isRunning = false;
@@ -60,7 +64,6 @@ public class Main {
                         System.out.println("<<<<<EXITING PROGRAM>>>>>");
                         System.exit(0);
                         break;
- 
 
                     default:
                         System.out.println("INVALIDE OPTION SELECTED.");

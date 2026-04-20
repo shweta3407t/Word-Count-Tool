@@ -1,10 +1,30 @@
 package service;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class WordCountService {
+
+    public static void wordFrequency(String text, HashMap<String, Integer> wordCount) {
+        text = text.trim();
+        text = text.replace("//w", " ");
+        String[] words = text.split(" ");
+
+        for (String i : words) {
+            if (wordCount.containsKey(i)) {
+                Integer newCount = wordCount.get(i) + 1;
+                wordCount.put(i, newCount);
+            } else {
+                wordCount.put(i, 1);
+            }
+
+        }
+        System.out.println("UNSORTED : " + wordCount);
+
+        // TODO : sort wordcount (words in sorted wey)
+
+    }
+
     public static void word(String text) {
         text = text.trim();
         text = text.replace("[.?!]", " ");
@@ -36,44 +56,18 @@ public class WordCountService {
 
     }
 
-    public static void line(String text) {// TODO:YE NAHI HUAAA HAI BARABAR SE
-        text = text.trim();
-        String[] word = text.split("\\n");
+    public static void line(String text) {// TODO:count line YE NAHI HUAAA HAI BARABAR SE
 
-        System.out.println("TOTAL LINE : " + word.length);
-    }
+        String trimedText = text.trim();
+        String[] realText = trimedText.split("[\\n]");
+        int countLine = 1;
 
-    public static void wordFrequency(String text, HashMap<HashSet<String>, Integer> wordCount) {
-        text = text.replace("[.?!]", " ");
-        String[] word = text.split(" ");
-
-        HashSet<String> set = new HashSet<>();
-        Integer count = wordCount.get(set);
-        count = 0;
-        for (String i : word) {
-            if (set.contains(i)) {
-                count += 1;
-            } else if (!set.contains(i)) {
-
-                set = new HashSet<>(Arrays.asList(word));
-                count = 1;
+        for (String singleText : realText) {
+            if (singleText == "//n") {
+                countLine += 1;
             }
-            
         }
-        System.out.println(set + " : " + count);
-
-        // Integer[] count = wordCount.get(set);
-
-        // for (String i : set) {
-
-        // if (wordCount.containsKey(set)) {
-
-        // } else if (!wordCount.containsKey(set)) {
-        // wordCount.put(set, count);
-        // }
-        // System.out.println(i + " : " + count);
-
-        // }
+        System.out.println("TOTAL LINE : " + countLine);
 
     }
 
