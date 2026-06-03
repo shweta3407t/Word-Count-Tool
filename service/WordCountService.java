@@ -1,7 +1,6 @@
 package service;
 
-import java.util.Collections;
-import java.util.HashMap;
+ import java.util.HashMap;
 
 public class WordCountService {
 
@@ -9,6 +8,8 @@ public class WordCountService {
         text = text.trim();
         text = text.replace("//w", " ");
         String[] words = text.split(" ");
+
+         
 
         for (String i : words) {
             if (wordCount.containsKey(i)) {
@@ -21,6 +22,7 @@ public class WordCountService {
         }
         System.out.println("UNSORTED : " + wordCount);
 
+ 
         // TODO : sort wordcount (words in sorted wey)
 
     }
@@ -49,6 +51,8 @@ public class WordCountService {
 
     public static void sentence(String text) {
         text = text.trim();
+        text = text.replace( " ", "");
+        text = text.replace("//w", "");
 
         String[] word = text.split("[.?!]");
 
